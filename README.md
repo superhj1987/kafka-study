@@ -1,2 +1,3 @@
 # kafka-sudy
-...
+
+learning kafka
