@@ -10,12 +10,12 @@
 - 不保证全局消息顺序，可以保证partion消息顺序
 - 顺序写磁盘，性能可媲美内存操作
 - 无论消息是否被消费，都会持久化保存（保存时间可以设置）
-- 消费者看到的消息顺序即是保存在log中的顺序A
+- 消费者看到的消息顺序即是保存在log中的顺序
 - 对于一个复制因子(replication factor)为N的topic,可以保证在N-1个server挂掉的情况下，已经提交到log中的消息不会丢失。
 
 ## 组成部分
 
-总体架构如下图：
+总体结构如下图：
 
 ![](http://kafka.apache.org/images/producer_consumer.png)
 
@@ -23,3 +23,5 @@
 - 向topic产生消息的进程称为producer
 - 处理topic上的消息的进程称为consumer
 - kafka集群由一个或者多个server组成，称为broker.
+
+### Topics and Logs
