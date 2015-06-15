@@ -9,3 +9,6 @@
 4. [实现](doc/implementation.md)
 
 5. [API](http://kafka.apache.org/documentation.html#producerapi)
+
+6. [kafka的consumer关键点](doc/kafka-consumer.md) 
+
