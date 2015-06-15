@@ -7,7 +7,7 @@
 ## 特点
 
 - 不支持事务
-- 不保证全局消息顺序，可以保证partion消息顺序
+- 不保证全局消息顺序，可以保证partition消息顺序
 - 顺序写磁盘，性能可媲美内存操作
 - 无论消息是否被消费，都会持久化保存（保存时间可以设置）
 - 消费者看到的消息顺序即是保存在log中的顺序
@@ -17,7 +17,7 @@
 
 总体结构如下图：
 
-![](http://kafka.apache.org/images/producer_consumer.png)
+![](http://kafka.apache.org/images/producer_consumer.png)p
 
 - kafka将消息以category的方式保存在一起，称为topic
 - 向topic产生消息的进程称为producer
@@ -42,20 +42,20 @@ topic是kafka提供的高一层的抽象。
 
 上面说到的一些特性表明kafka的消费者是非常轻量级的，并不受到集群或者其他消费者的影响。例如，可以使用命令行工具去“tail”任何topic的内容，而不需要改变任何已经被消费过的内容。
 
-日志中的partion有以下几个作用：
+日志中的partition有以下几个作用：
 
-- 日志可以在单个服务器上扩展。虽然单个partion的扩展必须适应于所在的服务器，但是一个topic有许多partion，因此能够承载大量的数据。
-- partion作为并行的一个单元
+- 日志可以在单个服务器上扩展。虽然单个partition的扩展必须适应于所在的服务器，但是一个topic有许多partition，因此能够承载大量的数据。
+- partition作为并行的一个单元
 
 ### 分布式
 
-日志的partion分布在kafka集群的服务器上，其中的每一个服务器都控制一组分区上的数据和请求。每一个分区通过一定数量的服务器的冗余提高容错率。
+日志的partition分布在kafka集群的服务器上，其中的每一个服务器都控制一组分区上的数据和请求。每一个分区通过一定数量的服务器的冗余提高容错率。
 
-每一个partion都有一个服务器作为"leader"，零个或者多个服务器作为“followers”。对于某一个partion,Leader控制所有的读写请求，followers被动地去冗余leader。如果leader发生了故障，那么followers中的一个会自动地成为新的leader。每一个服务器对于其中的一部分partion是做为leader,对于其他的partion则是做为follower，这样就能很好的在集群内部做好负载均衡。
+每一个partition都有一个服务器作为"leader"，零个或者多个服务器作为“followers”。对于某一个partition,Leader控制所有的读写请求，followers被动地去冗余leader。如果leader发生了故障，那么followers中的一个会自动地成为新的leader。每一个服务器对于其中的一部分partition是做为leader,对于其他的partition则是做为follower，这样就能很好的在集群内部做好负载均衡。
 
 ### 生产者
 
-生产者向所选择的topics发布消息。生产者负责选择哪一个消息被指定到topic的哪一个partion中。这个也可以通过round-robin简单地做负载均衡或者按照一些语义分区机制（例如基于消息中的一些key）来做。
+生产者向所选择的topics发布消息。生产者负责选择哪一个消息被指定到topic的哪一个partition中。这个也可以通过round-robin简单地做负载均衡或者按照一些语义分区机制（例如基于消息中的一些key）来做。
 
 ### 消费者
 
@@ -73,15 +73,15 @@ topic是kafka提供的高一层的抽象。
 
 传统的队列在服务端保存消息的顺序，服务端按照存储的顺序传递消息，多consumer去消费这些消息。然而，即使服务端按照顺序交出消息，但是消息是异步传递给消费者的，那么这些消息可能乱序到达不同的消费者。这也意味着消息的顺序在并发消费的情况下丢失了。消息系统通常用一个概念“执行消费者”来完成消息的顺序传递，即只允许一个进程从一个队列中消费消息，当然这样也意味着在处理过程中没有了并行化处理。
 
-kafka里有一个概念叫做parallelism—the partition—within the topics，能够同时为一个consume池提供顺序保证和负载均衡。指定分区到一个消费者group中的消费者，这样每一个分区只被这个group中的一个consumer消费。此consumer则成为这个分区唯一的reader去顺序消费这些数据。当有许多partions，这样也能同时将这些consumer实例进行负载均衡。值得注意的一点是不能有比分区数目更多的消费者实例。
+kafka里有一个概念叫做parallelism—the partition—within the topics，能够同时为一个consume池提供顺序保证和负载均衡。指定分区到一个消费者group中的消费者，这样每一个分区只被这个group中的一个consumer消费。此consumer则成为这个分区唯一的reader去顺序消费这些数据。当有许多partitions，这样也能同时将这些consumer实例进行负载均衡。值得注意的一点是不能有比分区数目更多的消费者实例。
 
-kafa仅仅能够提供一个partion中的消息顺序保证。如果你需要一个完全的消息顺序保障，那么可以通过仅仅具有一个partion的topic来实现，当然，这样就意味着这里仅仅有一个消费者进程。
+kafa仅仅能够提供一个partition中的消息顺序保证。如果你需要一个完全的消息顺序保障，那么可以通过仅仅具有一个partition的topic来实现，当然，这样就意味着这里仅仅有一个消费者进程。
 
 ### 保证
 
 kafka在高层次上可以给予以下保障：
 
-- 通过同一个生产者发出到某个topic上partion的消息将会以其原始发送顺序附加到partion上。
+- 通过同一个生产者发出到某个topic上partition的消息将会以其原始发送顺序附加到partition上。
 - 一个消费者实例看到消息的顺序即其在log中的顺序。
 - 对于一个复制引子为N的topic，其可以允许N-1个服务器故障而不丢失任何已经提交到log中的消息。
 
