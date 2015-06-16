@@ -1,4 +1,4 @@
-# Kafka Consumer的一些问题
+# Kafka Consumer开发的一些关键点
 
 Kafka的consumer是以pull的形式获取消息数据的。不同于队列和发布-订阅模式，kafka采用了consumer group的模式。通常的，一般采用一个consumer中的一个group对应一个业务，配合多个producer提供数据。
 
