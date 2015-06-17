@@ -10,5 +10,5 @@
 
 5. [API](http://kafka.apache.org/documentation.html#producerapi)
 
-6. [kafka的consumer关键点](doc/kafka-consumer.md) 
+6. [Kafka的Consumer关键点](doc/kafka-consumer.md) 
 
