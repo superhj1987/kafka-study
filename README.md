@@ -16,4 +16,5 @@
 ## 个人总结
 
 - [Kafka的Consumer关键点](doc/kafka-consumer.md) 
+- [Kafka的Web监控](https://github.com/claudemamo/kafka-web-console)
 
