@@ -2,13 +2,13 @@
 
 ## 官方文档
 
-- [总体介绍](http://www.rowkey.me/blog/2016/05/30/kafka-intro/)
-- [使用与配置](http://www.rowkey.me/blog/2016/05/30/kafka-usage/)
+- [总体介绍](http://www.rowkey.me/blog/2015/05/30/kafka-intro/)
+- [使用与配置](http://www.rowkey.me/blog/2015/05/30/kafka-usage/)
 - [API](http://kafka.apache.org/documentation.html#producerapi)
 
 ## 个人笔记
 
-- [Kafka的Consumer关键点](http://www.rowkey.me/blog/2016/05/30/kafka-consumer/) 
+- [Kafka的Consumer关键点](http://www.rowkey.me/blog/2015/05/30/kafka-consumer/) 
 - [KafkaOffsetMonitor](https://github.com/quantifind/KafkaOffsetMonitor)
 - [Kafka的Web监控](https://github.com/claudemamo/kafka-web-console)
 
