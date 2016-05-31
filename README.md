@@ -17,7 +17,3 @@
 - [Producer](https://github.com/Suishenyun/kafka-producer): High level的producer封装 in ***Java***
 - [Consumer](https://github.com/Suishenyun/kafka-consumer): High level的consumer封装 in ***Java***
 
-## 示例代码
-
-ToDo
-
